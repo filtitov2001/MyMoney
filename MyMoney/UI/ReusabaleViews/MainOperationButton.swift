@@ -8,6 +8,7 @@
 
 
 import UIKit
+import SnapKit
 
 enum MainOperationButtonType {
     case standart
@@ -34,15 +35,11 @@ class MainOperationButton: UIButton {
     
     // MARK: - Internal functions
     func setupConstraints(superview: UIView, safeAreaLayoutGuide: UILayoutGuide) {
-        
-        // TODO: - SnapKit
-        /*
         snp.makeConstraints { make in
             make.height.equalTo(56)
             make.leading.trailing.equalTo(superview).inset(16)
             make.bottom.equalTo(safeAreaLayoutGuide).inset(16)
         }
-        */
     }
     
     func disable() {

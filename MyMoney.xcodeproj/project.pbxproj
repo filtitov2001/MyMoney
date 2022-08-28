@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F88071B2C7916933B8140BB /* Pods_MyMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46A06371E73AD12D750EDC3 /* Pods_MyMoney.framework */; };
 		2B1B952028BABCCD00D0EDB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B951F28BABCCD00D0EDB1 /* AppDelegate.swift */; };
 		2B1B952228BABCCD00D0EDB1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B952128BABCCD00D0EDB1 /* SceneDelegate.swift */; };
 		2B1B952428BABCCD00D0EDB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B952328BABCCD00D0EDB1 /* ViewController.swift */; };
@@ -26,6 +27,9 @@
 		2B1B952B28BABCCF00D0EDB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B1B952D28BABCCF00D0EDB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B1B953928BBF8AF00D0EDB1 /* MainOperationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOperationButton.swift; sourceTree = "<group>"; };
+		C120D9B608797DA7134FA1CE /* Pods-MyMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMoney.release.xcconfig"; path = "Target Support Files/Pods-MyMoney/Pods-MyMoney.release.xcconfig"; sourceTree = "<group>"; };
+		F46A06371E73AD12D750EDC3 /* Pods_MyMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDD070FEB26757DBBB05ECCB /* Pods-MyMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMoney.debug.xcconfig"; path = "Target Support Files/Pods-MyMoney/Pods-MyMoney.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F88071B2C7916933B8140BB /* Pods_MyMoney.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		005BD3F03F500D095D7D0778 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F46A06371E73AD12D750EDC3 /* Pods_MyMoney.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2B1B951328BABCCD00D0EDB1 = {
 			isa = PBXGroup;
 			children = (
 				2B1B951E28BABCCD00D0EDB1 /* MyMoney */,
 				2B1B951D28BABCCD00D0EDB1 /* Products */,
+				C97B6773BC85CB4CEE054A95 /* Pods */,
+				005BD3F03F500D095D7D0778 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +101,16 @@
 			path = ReusabaleViews;
 			sourceTree = "<group>";
 		};
+		C97B6773BC85CB4CEE054A95 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FDD070FEB26757DBBB05ECCB /* Pods-MyMoney.debug.xcconfig */,
+				C120D9B608797DA7134FA1CE /* Pods-MyMoney.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -93,9 +118,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B1B953028BABCCF00D0EDB1 /* Build configuration list for PBXNativeTarget "MyMoney" */;
 			buildPhases = (
+				1B01965B8064A9D80D6A96CF /* [CP] Check Pods Manifest.lock */,
 				2B1B951828BABCCD00D0EDB1 /* Sources */,
 				2B1B951928BABCCD00D0EDB1 /* Frameworks */,
 				2B1B951A28BABCCD00D0EDB1 /* Resources */,
+				E733856503A2615633550DF8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +178,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B01965B8064A9D80D6A96CF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyMoney-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E733856503A2615633550DF8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyMoney/Pods-MyMoney-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyMoney/Pods-MyMoney-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyMoney/Pods-MyMoney-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2B1B951828BABCCD00D0EDB1 /* Sources */ = {
@@ -302,6 +371,7 @@
 		};
 		2B1B953128BABCCF00D0EDB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDD070FEB26757DBBB05ECCB /* Pods-MyMoney.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -330,6 +400,7 @@
 		};
 		2B1B953228BABCCF00D0EDB1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C120D9B608797DA7134FA1CE /* Pods-MyMoney.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

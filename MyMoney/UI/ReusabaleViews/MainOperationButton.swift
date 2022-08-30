@@ -36,11 +36,12 @@ class MainOperationButton: UIButton {
     // MARK: - Internal functions
     func setupConstraints(superview: UIView, safeAreaLayoutGuide: UILayoutGuide) {
         snp.makeConstraints { make in
-            make.height.equalTo(56)
+            make.height.equalToSuperview().multipliedBy(0.078)
             make.leading.trailing.equalTo(superview).inset(16)
             make.bottom.equalTo(safeAreaLayoutGuide).inset(16)
         }
     }
+    
     
     func disable() {
         self.isEnabled = false
@@ -63,8 +64,36 @@ class MainOperationButton: UIButton {
             setTitleColor(.black, for: .normal)
         }
         
-        layer.cornerRadius = 20
+        
+        layer.cornerRadius = 10
         setTitle(title, for: .normal)
     }
 }
 
+
+//MARK: - SwiftUI
+import SwiftUI
+
+struct ViewControllerProvider: PreviewProvider {
+    static var previews: some View {
+        ContainerView()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
+            .previewDisplayName("iPhone 13")
+            .edgesIgnoringSafeArea(.all)
+
+        ContainerView()
+            .previewDevice(PreviewDevice(rawValue: "iPhone SE (1st generation)"))
+            .previewDisplayName("iPhone SE (1st generation)")
+            .edgesIgnoringSafeArea(.all)
+    }
+    
+    struct ContainerView: UIViewControllerRepresentable {
+        let viewController = WelcomeViewController()
+        
+        func makeUIViewController(context: Context) -> some WelcomeViewController {
+            return viewController
+        }
+        
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    }
+}

@@ -13,19 +13,17 @@ import SnapKit
 class OnboardingCollectionViewCell: UICollectionViewCell {
     static let reuseID = "OnboardingCollectionViewCell"
     
+    //MARK: - UI Prooperties
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-    
-        imageView.image = UIImage(named: "wallet3")
         return imageView
     }()
     
     private lazy var mainTitleLabel: UILabel = {
        let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 25, weight: .medium)
-        label.text = "Welcome to My Money!"
+        label.font = UIFont(name: UIFont.SanFrancisco.bold.rawValue, size: UIFont.dynamicFontSize(25))
         label.numberOfLines = 0
         return label
     }()
@@ -33,8 +31,8 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
     private lazy var descriptionLabel: UILabel = {
        let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.text = "Application created for showing your incomes and outcomes."
+        label.font = UIFont(name: UIFont.SanFrancisco.regular.rawValue, size: UIFont.dynamicFontSize(17))
+        label.textColor = .systemGray
         label.numberOfLines = 0
         return label
     }()
@@ -47,9 +45,9 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
+    //MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupConstraints()
     }
     
@@ -65,13 +63,13 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
     
     private func setupConstraints() {
         contentView.addSubview(labelsStackView)
+        contentView.addSubview(imageView)
         
         labelsStackView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.bottom.equalToSuperview().offset(-16)
         }
         
-        contentView.addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.top.trailing.leading.equalToSuperview()
             make.bottom.equalTo(labelsStackView.snp.top)

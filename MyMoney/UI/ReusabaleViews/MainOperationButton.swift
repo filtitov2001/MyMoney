@@ -33,7 +33,7 @@ class MainOperationButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Internal functions
+    // MARK: -  functions
     func setupConstraints(superview: UIView, safeAreaLayoutGuide: UILayoutGuide) {
         snp.makeConstraints { make in
             make.height.equalToSuperview().multipliedBy(0.078)
@@ -55,6 +55,8 @@ class MainOperationButton: UIButton {
     
     private func setupButton(with type: MainOperationButtonType) {
         
+        titleLabel?.font = UIFont(name: UIFont.SanFrancisco.semibold.rawValue, size: UIFont.dynamicFontSize(22))
+        
         switch type {
         case .standart:
             backgroundColor = #colorLiteral(red: 0.2605186105, green: 0.2605186105, blue: 0.2605186105, alpha: 1)
@@ -64,36 +66,7 @@ class MainOperationButton: UIButton {
             setTitleColor(.black, for: .normal)
         }
         
-        
         layer.cornerRadius = 10
         setTitle(title, for: .normal)
-    }
-}
-
-
-//MARK: - SwiftUI
-import SwiftUI
-
-struct ViewControllerProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
-            .previewDisplayName("iPhone 13")
-            .edgesIgnoringSafeArea(.all)
-
-        ContainerView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone SE (1st generation)"))
-            .previewDisplayName("iPhone SE (1st generation)")
-            .edgesIgnoringSafeArea(.all)
-    }
-    
-    struct ContainerView: UIViewControllerRepresentable {
-        let viewController = WelcomeViewController()
-        
-        func makeUIViewController(context: Context) -> some WelcomeViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
     }
 }

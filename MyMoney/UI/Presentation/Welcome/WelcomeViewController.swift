@@ -12,16 +12,6 @@ import SnapKit
 
 final class WelcomeViewController: UIViewController {
     
-//    var currentPage = 0 {
-//        didSet {
-//            if currentPage == 2 {
-//                nextActionButton.setTitle("Get started", for: .normal)
-//            } else {
-//                nextActionButton.setTitle("Next", for: .normal)
-//            }
-//        }
-//    }
-    
     var models = OnboardingSlide.getSlides()
     
     private lazy var nextActionButton: MainOperationButton = {
@@ -33,24 +23,29 @@ final class WelcomeViewController: UIViewController {
     
     private lazy var pageControll: UIPageControl = {
         let pageControll = UIPageControl()
+        
         pageControll.numberOfPages = 3
-        pageControll.currentPageIndicatorTintColor = #colorLiteral(red: 0.4235294118, green: 0.3215686275, blue: 0.9490196078, alpha: 1)
+        pageControll.currentPageIndicatorTintColor = .mainThemeColor
         pageControll.pageIndicatorTintColor = .systemGray4
+        
         pageControll.addTarget(self, action: #selector(pageControllValueChanged), for: .valueChanged)
         
         return pageControll
     }()
     
     private lazy var slidesCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: UICollectionViewFlowLayout(scrollDirection: .horizontal)
+        )
+        
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isPagingEnabled = true
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         return collectionView
     }()
     
@@ -60,8 +55,22 @@ final class WelcomeViewController: UIViewController {
         view.backgroundColor = .systemBackground
         slidesCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ID")
         slidesCollectionView.register(OnboardingCollectionViewCell.self, forCellWithReuseIdentifier: OnboardingCollectionViewCell.reuseID)
-        
-        
+     
+        setupConstraints()
+    }
+    
+    @objc
+    private func pageControllValueChanged() {
+        updatePageControllAndButton(with: pageControll.currentPage)
+    }
+    
+    @objc
+    private func nextButtonTapped() {
+        pageControll.currentPage += 1
+        updatePageControllAndButton(with: pageControll.currentPage)
+    }
+    
+    private func setupConstraints() {
         view.addSubview(nextActionButton)
         view.addSubview(pageControll)
         view.addSubview(slidesCollectionView)
@@ -77,23 +86,11 @@ final class WelcomeViewController: UIViewController {
             make.top.trailing.leading.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(pageControll.snp.top)
         }
-        
-    }
-    
-    @objc
-    private func pageControllValueChanged() {
-        updatePageControllAndButton(with: pageControll.currentPage)
-    }
-    
-    @objc
-    private func nextButtonTapped() {
-        pageControll.currentPage += 1
-        updatePageControllAndButton(with: pageControll.currentPage)
     }
     
     private func updatePageControllAndButton(with currentPage: Int) {
         if pageControll.currentPage == 2 {
-            nextActionButton.setTitle("Get strted", for: .normal)
+            nextActionButton.setTitle("Get started", for: .normal)
         } else {
             nextActionButton.setTitle("Next", for: .normal)
         }
@@ -104,6 +101,7 @@ final class WelcomeViewController: UIViewController {
     
 }
 
+//MARK: - UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 extension WelcomeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: slidesCollectionView.frame.width, height: slidesCollectionView.frame.height)
@@ -125,7 +123,7 @@ extension WelcomeViewController: UICollectionViewDelegate, UICollectionViewDeleg
     }
 }
 
-
+//MARK: - UICollectionViewDataSource
 extension WelcomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         models.count
@@ -137,34 +135,4 @@ extension WelcomeViewController: UICollectionViewDataSource {
         cell.setupCell(with: model)
         return cell
     }
-    
-    
-    
 }
-
-////MARK: - SwiftUI
-//import SwiftUI
-//
-//struct ViewControllerProvider: PreviewProvider {
-//    static var previews: some View {
-//        ContainerView()
-//            .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
-//            .previewDisplayName("iPhone 13")
-//            .edgesIgnoringSafeArea(.all)
-//
-//        ContainerView()
-//            .previewDevice(PreviewDevice(rawValue: "iPhone SE (1st generation)"))
-//            .previewDisplayName("iPhone SE (1st generation)")
-//            .edgesIgnoringSafeArea(.all)
-//    }
-//    
-//    struct ContainerView: UIViewControllerRepresentable {
-//        let viewController = WelcomeViewController()
-//        
-//        func makeUIViewController(context: Context) -> some WelcomeViewController {
-//            return viewController
-//        }
-//        
-//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-//    }
-//}

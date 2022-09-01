@@ -33,14 +33,15 @@ class MainOperationButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Internal functions
+    // MARK: -  functions
     func setupConstraints(superview: UIView, safeAreaLayoutGuide: UILayoutGuide) {
         snp.makeConstraints { make in
-            make.height.equalTo(56)
+            make.height.equalToSuperview().multipliedBy(0.078)
             make.leading.trailing.equalTo(superview).inset(16)
             make.bottom.equalTo(safeAreaLayoutGuide).inset(16)
         }
     }
+    
     
     func disable() {
         self.isEnabled = false
@@ -54,6 +55,8 @@ class MainOperationButton: UIButton {
     
     private func setupButton(with type: MainOperationButtonType) {
         
+        titleLabel?.font = UIFont(name: UIFont.SanFrancisco.medium.rawValue, size: UIFont.dynamicFontSize(20))
+        
         switch type {
         case .standart:
             backgroundColor = #colorLiteral(red: 0.2605186105, green: 0.2605186105, blue: 0.2605186105, alpha: 1)
@@ -63,8 +66,7 @@ class MainOperationButton: UIButton {
             setTitleColor(.black, for: .normal)
         }
         
-        layer.cornerRadius = 20
+        layer.cornerRadius = 10
         setTitle(title, for: .normal)
     }
 }
-

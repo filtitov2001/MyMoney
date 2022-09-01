@@ -13,6 +13,14 @@ import SnapKit
 class OnboardingCollectionViewCell: UICollectionViewCell {
     static let reuseID = "OnboardingCollectionViewCell"
     
+    weak var viewModel: OnboardingSlideCellViewModelProtocol? {
+        didSet {
+            if let viewModel = viewModel {
+                setupCell(with: viewModel)
+            }
+        }
+    }
+    
     //MARK: - UI Prooperties
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -55,10 +63,11 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupCell(with model: OnboardingSlide) {
-        imageView.image = UIImage(named: model.image)
-        mainTitleLabel.text = model.title
-        descriptionLabel.text = model.description
+    //MARK: - Private functions
+    private func setupCell(with viewModel: OnboardingSlideCellViewModelProtocol) {
+        imageView.image = UIImage(named: viewModel.imageName)
+        mainTitleLabel.text = viewModel.mainTitle
+        descriptionLabel.text = viewModel.description
     }
     
     private func setupConstraints() {
@@ -74,32 +83,5 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
             make.top.trailing.leading.equalToSuperview()
             make.bottom.equalTo(labelsStackView.snp.top)
         }
-    }
-}
-
-//MARK: - SwiftUI
-import SwiftUI
-
-struct WelcomeViewControllerProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
-            .previewDisplayName("iPhone 13")
-            .edgesIgnoringSafeArea(.all)
-
-        ContainerView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone SE (1st generation)"))
-            .previewDisplayName("iPhone SE (1st generation)")
-            .edgesIgnoringSafeArea(.all)
-    }
-
-    struct ContainerView: UIViewControllerRepresentable {
-        let viewController = WelcomeViewController()
-
-        func makeUIViewController(context: Context) -> some WelcomeViewController {
-            return viewController
-        }
-
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
     }
 }

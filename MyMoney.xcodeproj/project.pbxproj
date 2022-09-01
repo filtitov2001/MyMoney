@@ -32,6 +32,7 @@
 		2B1B959828BF67BF00D0EDB1 /* Extension + UICollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B959728BF67BF00D0EDB1 /* Extension + UICollectionViewFlowLayout.swift */; };
 		2B1B959B28BF87E700D0EDB1 /* OnboardingSlideCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B959A28BF87E700D0EDB1 /* OnboardingSlideCellViewModel.swift */; };
 		2B1B959D28BF88DA00D0EDB1 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B959C28BF88DA00D0EDB1 /* Extension + UIColor.swift */; };
+		2B1B959F28BF8CD800D0EDB1 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B959E28BF8CD800D0EDB1 /* WelcomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		2B1B959728BF67BF00D0EDB1 /* Extension + UICollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UICollectionViewFlowLayout.swift"; sourceTree = "<group>"; };
 		2B1B959A28BF87E700D0EDB1 /* OnboardingSlideCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlideCellViewModel.swift; sourceTree = "<group>"; };
 		2B1B959C28BF88DA00D0EDB1 /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
+		2B1B959E28BF8CD800D0EDB1 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		C120D9B608797DA7134FA1CE /* Pods-MyMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMoney.release.xcconfig"; path = "Target Support Files/Pods-MyMoney/Pods-MyMoney.release.xcconfig"; sourceTree = "<group>"; };
 		F46A06371E73AD12D750EDC3 /* Pods_MyMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDD070FEB26757DBBB05ECCB /* Pods-MyMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMoney.debug.xcconfig"; path = "Target Support Files/Pods-MyMoney/Pods-MyMoney.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				2B1B956428BCF53B00D0EDB1 /* Views */,
 				2B1B956128BCF1D400D0EDB1 /* Models */,
 				2B1B953D28BC0C1200D0EDB1 /* WelcomeViewController.swift */,
+				2B1B959E28BF8CD800D0EDB1 /* WelcomeViewModel.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 			files = (
 				2B1B959628BF5D1800D0EDB1 /* Extension + UIFont.swift in Sources */,
 				2B1B959B28BF87E700D0EDB1 /* OnboardingSlideCellViewModel.swift in Sources */,
+				2B1B959F28BF8CD800D0EDB1 /* WelcomeViewModel.swift in Sources */,
 				2B1B952428BABCCD00D0EDB1 /* ViewController.swift in Sources */,
 				2B1B953E28BC0C1200D0EDB1 /* WelcomeViewController.swift in Sources */,
 				2B1B952028BABCCD00D0EDB1 /* AppDelegate.swift in Sources */,

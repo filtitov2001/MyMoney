@@ -55,7 +55,7 @@ class MainOperationButton: UIButton {
     
     private func setupButton(with type: MainOperationButtonType) {
         
-        titleLabel?.font = UIFont(name: UIFont.SanFrancisco.semibold.rawValue, size: UIFont.dynamicFontSize(22))
+        titleLabel?.font = UIFont(name: UIFont.SanFrancisco.medium.rawValue, size: UIFont.dynamicFontSize(20))
         
         switch type {
         case .standart:

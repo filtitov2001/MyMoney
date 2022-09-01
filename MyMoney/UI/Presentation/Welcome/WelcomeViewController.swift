@@ -12,7 +12,13 @@ import SnapKit
 
 final class WelcomeViewController: UIViewController {
     
-    var models = OnboardingSlide.getSlides()
+    private var welcomeViewModel: WelcomeViewModelProtocol? {
+        didSet {
+            welcomeViewModel?.getSlides {
+                self.slidesCollectionView.reloadData()
+            }
+        }
+    }
     
     private lazy var nextActionButton: MainOperationButton = {
         let button = MainOperationButton(title: "Next", type: .standart)
@@ -38,6 +44,10 @@ final class WelcomeViewController: UIViewController {
             frame: .zero,
             collectionViewLayout: UICollectionViewFlowLayout(scrollDirection: .horizontal)
         )
+        collectionView.register(
+            OnboardingCollectionViewCell.self,
+            forCellWithReuseIdentifier: OnboardingCollectionViewCell.reuseID
+        )
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -52,10 +62,9 @@ final class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        welcomeViewModel = WelcomeViewModel()
+        
         view.backgroundColor = .systemBackground
-        slidesCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ID")
-        slidesCollectionView.register(OnboardingCollectionViewCell.self, forCellWithReuseIdentifier: OnboardingCollectionViewCell.reuseID)
-     
         setupConstraints()
     }
     
@@ -126,13 +135,12 @@ extension WelcomeViewController: UICollectionViewDelegate, UICollectionViewDeleg
 //MARK: - UICollectionViewDataSource
 extension WelcomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        models.count
+        welcomeViewModel?.numberOfItems ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = slidesCollectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.reuseID, for: indexPath) as! OnboardingCollectionViewCell
-        let model = models[indexPath.row]
-        cell.setupCell(with: model)
+        guard let cell = slidesCollectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.reuseID, for: indexPath) as? OnboardingCollectionViewCell else { return UICollectionViewCell() }
+        cell.viewModel = welcomeViewModel?.slidesCellViewModel(at: indexPath)
         return cell
     }
 }
